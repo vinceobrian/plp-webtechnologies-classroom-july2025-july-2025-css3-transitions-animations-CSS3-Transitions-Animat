@@ -1,0 +1,157 @@
+/* ---------- Basic reset ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #fbfbfd;
+  --surface: #ffffff;
+  --muted: #666;
+  --accent: #007acc;
+  --accent-2: #00a86b;
+  --glass: rgba(255,255,255,0.6);
+}
+html,body { height: 100%; background: var(--bg); font-family: Inter, Arial, sans-serif; color: #222; }
+
+/* ---------- Header ---------- */
+.site-header {
+  display:flex; justify-content:space-between; align-items:center;
+  padding: 1rem 1.25rem; background: linear-gradient(90deg,#0f1724,#12324b); color: #fff;
+  gap:1rem;
+}
+.brand h1 { font-size:1.35rem; letter-spacing:0.5px; }
+.brand .tag { font-size:0.9rem; color: #cfe7ff; margin-top:0.2rem; }
+
+/* ---------- Layout container ---------- */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 1.25rem;
+  max-width: 1100px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  grid-column: 1 / -1;
+  background: linear-gradient(180deg,#fff,#f1f6ff);
+  padding: 1.25rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(15,20,30,0.06);
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+}
+.hero p { color: var(--muted); }
+.primary {
+  background: var(--accent);
+  color:#fff; border:none; padding:0.6rem 0.9rem; border-radius:8px; cursor:pointer;
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.primary:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(3,50,100,0.12); }
+
+/* ---------- Card grid (flex-wrap demo) ---------- */
+.journey { padding: 0.25rem 0; }
+.journey h2 { margin-bottom: 0.6rem; color: #123; }
+.card-grid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items:flex-start;
+}
+
+/* Card base */
+.card {
+  width: 300px;
+  perspective: 1200px; /* needed for 3D flip */
+  list-style: none;
+}
+.card-inner {
+  position: relative;
+  width:100%; height: 220px;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(.2,.9,.3,1);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(10,20,30,0.08);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* flip state */
+.card-inner.is-flipped { transform: rotateY(180deg); }
+
+/* Front & back faces */
+.card-front, .card-back {
+  position:absolute; inset:0; backface-visibility: hidden; display:flex; flex-direction:column; gap:8px;
+  padding: 14px;
+}
+.card-front {
+  background: linear-gradient(180deg,#fff,#f7fbff);
+}
+.card-front img {
+  width:100%; height:110px; object-fit:cover; border-radius:8px; margin-bottom:6px;
+}
+.card-front h3 { font-size:1rem; color:#0b2540; }
+.card-front p { color:var(--muted); font-size:0.9rem; }
+
+/* Back face */
+.card-back {
+  background: linear-gradient(180deg,#0b2540,#08304a);
+  color: #fff; transform: rotateY(180deg);
+  justify-content:center; align-items:center; text-align:center; padding:16px;
+}
+.card-back p { font-size:0.95rem; line-height:1.35; }
+
+/* small status pill */
+.pill {
+  margin-top:auto; align-self:flex-start;
+  background: rgba(0,0,0,0.06); color:#123; font-weight:600; padding:6px 8px; border-radius:999px; font-size:0.8rem;
+}
+
+/* ---------- Spotlight / Future card (glow animation) ---------- */
+.spotlight {
+  background: var(--surface);
+  border-radius: 10px; padding: 1rem; align-self:start;
+  box-shadow: 0 6px 18px rgba(10,20,30,0.06);
+}
+.future-card {
+  padding: 1rem; border-radius:8px; background: linear-gradient(180deg,#fff,#ecfffb);
+  border: 1px solid rgba(0,168,107,0.12);
+  animation: softPulse 3s ease-in-out infinite;
+}
+@keyframes softPulse {
+  0% { box-shadow: 0 0 0 0 rgba(0,168,107,0.08); transform: translateY(0); }
+  50% { box-shadow: 0 10px 30px rgba(0,168,107,0.08); transform: translateY(-4px); }
+  100% { box-shadow: 0 0 0 0 rgba(0,168,107,0.08); transform: translateY(0); }
+}
+
+/* ---------- Modal ---------- */
+.modal {
+  position: fixed; inset:0; display:flex; align-items:center; justify-content:center;
+  background: rgba(0,0,0,0.4); visibility: hidden; opacity: 0; transition: opacity .25s ease;
+}
+.modal.show { visibility: visible; opacity: 1; }
+.modal-content {
+  background: var(--surface); padding: 1.25rem; border-radius: 10px; width: 90%; max-width: 520px; position:relative;
+  box-shadow: 0 12px 40px rgba(8,20,40,0.2);
+}
+.close { position:absolute; top:8px; right:8px; border:none; background:transparent; font-size:1.1rem; cursor:pointer; }
+
+/* ---------- Theme dark mode ---------- */
+.dark {
+  --bg: #071226;
+  --surface: #0d1620;
+  color: #e6eef6;
+}
+.dark .site-header { background: linear-gradient(90deg,#071226,#07293b); }
+.dark .hero { background: linear-gradient(180deg,#071226,#071a2a); color:#e7f2ff; }
+.dark .card-front { background: linear-gradient(180deg,#071a2a,#071226); color:#dbeeff; }
+.dark .card-back { background: linear-gradient(180deg,#07293b,#071a2a); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .container { grid-template-columns: 1fr; padding: 0 0.8rem; }
+  .hero { flex-direction: column; align-items:flex-start; gap:0.8rem; }
+  .spotlight { order: 3; }
+  .card { width: calc(50% - 0.5rem); }
+}
+@media (max-width: 560px) {
+  .card { width: 100%; }
+  .card-inner { height: 200px; }
+}

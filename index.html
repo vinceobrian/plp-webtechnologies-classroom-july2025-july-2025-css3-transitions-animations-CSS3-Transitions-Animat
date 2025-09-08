@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vincent Tochi - From Coffee to Code</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <h1>Vincent Tochi</h1>
+      <p class="tag">From coffee beans to code - my journey in tech</p>
+    </div>
+    <div class="header-actions">
+      <button id="themeToggle" aria-pressed="false">Theme</button>
+      <button id="quoteBtn">Show Quote</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Intro / Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <h2 id="hero-title">Welcome - My Tech Timeline</h2>
+      <p>Click a card to flip it and learn what I gained from each role.</p>
+      <button id="revealNextBtn" class="primary">Reveal next milestone</button>
+    </section>
+
+    <!-- Journey Cards (generated with JS) -->
+    <section class="journey" aria-label="Journey milestones">
+      <h2>Milestones</h2>
+      <div id="cards" class="card-grid" role="list"></div>
+    </section>
+
+    <!-- Spotlight / Future Card -->
+    <aside class="spotlight" aria-labelledby="spotlight-title">
+      <h3 id="spotlight-title">Future</h3>
+      <div id="futureCard" class="future-card">
+        <p>Building JuaKazi - empowering work and careers in Kenya.</p>
+      </div>
+    </aside>
+
+    <!-- Modal (quote) -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-content">
+        <button id="closeModal" class="close" aria-label="Close modal">✕</button>
+        <blockquote id="modalQuote">“Curiosity first, consistency always.” - Vincent</blockquote>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Made by <strong>Vincent Tochi</strong> - Turbo Vincent</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
