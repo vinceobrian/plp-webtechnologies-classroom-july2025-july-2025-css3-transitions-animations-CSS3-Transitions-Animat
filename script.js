@@ -54,7 +54,7 @@ const milestones = [
 function lessonForRole(roleName) {
   // local variable inside function (local scope)
   const found = milestones.find(m => m.role === roleName);
-  return found ? found.lesson : "Every role is a lesson — keep learning.";
+  return found ? found.lesson : "Every role is a lesson - keep learning.";
 }
 
 /* ---------- Function: build a card DOM node (reusable) ---------- */
